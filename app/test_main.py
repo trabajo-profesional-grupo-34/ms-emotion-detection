@@ -33,12 +33,13 @@ def test():
 def test_get_dominant_emotion():
     with open('./images/happy_face.jpg', 'rb') as file:
         image_data = file.read()
-        base64_encoded_image = base64.b64encode(image_data)
-        base64_string = base64_encoded_image.decode('utf-8')
 
-        response = client.post("/dominant_emotion", json={
-            "image": f"data:image/jpeg;base64,{base64_string}"
-        })
+    base64_encoded_image = base64.b64encode(image_data)
+    base64_str = base64_encoded_image.decode('utf-8')
 
-        assert response.status_code == 200
-        assert response.json() == {"dominant_emotion": "happy"}
+    response = client.post("/dominant_emotion", json={
+        "base64_str": f"data:image/jpeg;base64,{base64_str}"
+    })
+
+    assert response.status_code == 200
+    assert response.json() == {"dominant_emotion": "happy"}
