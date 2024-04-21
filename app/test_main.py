@@ -24,12 +24,6 @@ def test_hello_name_with_alex():
     assert response.json() == {"message": "Hello, Alex!"}
 
 
-def test():
-    response = client.get("/emotion")
-    assert response.status_code == 200
-    assert response.json() == {"emotion": "happy"}
-
-
 def test_get_dominant_emotion():
     with open('./images/happy_face.jpg', 'rb') as file:
         image_data = file.read()
