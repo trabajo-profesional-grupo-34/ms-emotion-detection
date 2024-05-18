@@ -23,8 +23,17 @@ def hello_name(name: str = "World"):
 @app.post("/dominant_emotion", status_code=200)
 def get_dominant_emotion(image: Image):
     dominant_emotion = DeepFace.analyze(
-        img_path = image.base64_str, 
-        actions = ['emotion']
+        img_path = image.base64_str
     )[0]["dominant_emotion"]
 
     return { "dominant_emotion": dominant_emotion }
+
+
+@app.post("/test", status_code=200)
+def get_dominant_emotion(image: Image):
+    dominant_emotion = DeepFace.analyze(
+        img_path = image.base64_str, 
+        actions = ['emotion']
+    )[0]
+
+    return dominant_emotion
