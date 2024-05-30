@@ -29,11 +29,11 @@ def get_dominant_emotion(image: Image):
     return { "dominant_emotion": dominant_emotion }
 
 
-@app.post("/test", status_code=200)
-def get_dominant_emotion(image: Image):
-    dominant_emotion = DeepFace.analyze(
+@app.post("/emotion", status_code=200)
+def get_emotion(image: Image):
+    emotions = DeepFace.analyze(
         img_path = image.base64_str, 
         actions = ['emotion']
     )[0]
 
-    return dominant_emotion
+    return emotions
